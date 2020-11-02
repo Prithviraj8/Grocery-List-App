@@ -7,25 +7,16 @@
     tools:context=".MainActivity">
 
 
-<!--    <SearchView-->
-<!--        android:id="@+id/SearchView_Item"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentTop="true"-->
-<!--        android:layout_marginTop="0dp"-->
-<!--        android:background="#8E8888"-->
-<!--        android:queryHint="Search by District Name"/>-->
-
     <EditText
+        android:id="@+id/SearchEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/SearchEditText"
         android:layout_marginTop="0dp"
         android:background="#8E8888"
+        android:hint="Search by District Name"
         android:padding="5dp"
-        android:hint="Search by District or Village Name (Type 4 character or more)"
-        android:textColorHint="#FFFF"
         android:textColor="#FFF"
+        android:textColorHint="#FFFF"
         android:textSize="14sp"
 
         />

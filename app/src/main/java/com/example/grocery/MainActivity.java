@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
 
+                        Log.d("RESPONSE ",response.substring(94, response.length() - 1));
                         for(int i = 94;i<response.length();i++){
 
                         // Checking for count Comma in the response and extracting the substring based on the indices of comma.
@@ -399,18 +400,18 @@ public class MainActivity extends AppCompatActivity {
 
                     if(!searching) {
 
-                        itemName.setText(item_infos.get(i).getItemName());
+                        itemName.setText("Name "+item_infos.get(i).getItemName());
                         itemPrice.setText("Rs. " + item_infos.get(i).getPrice());
-                        district.setText(item_infos.get(i).getDistrict());
+                        district.setText("District: "+ item_infos.get(i).getDistrict());
                         date_time.setText(item_infos.get(i).getDate_time());
                         village.setText(item_infos.get(i).getVillage());
 
                     }else{
                         if(i < item_names.size() && i < prices.size() && i < districts.size() && i < dates_times.size() && i < villages.size()) {
 
-                            itemName.setText(item_names.get(i));
+                            itemName.setText("Name "+item_names.get(i));
                             itemPrice.setText("Rs. " + prices.get(i));
-                            district.setText(districts.get(i));
+                            district.setText("District: "+ districts.get(i));
                             date_time.setText(dates_times.get(i));
                             village.setText(villages.get(i));
 
@@ -430,7 +431,6 @@ public class MainActivity extends AppCompatActivity {
 
         Filter filter = new Filter() {
 
-            boolean searchByDistrict;
             // Running on background thread
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
@@ -439,24 +439,19 @@ public class MainActivity extends AppCompatActivity {
                 List<Item> items = myAppDatabase.myDao().getItems();
 
                 if(!charSequence.toString().isEmpty()){
-                    if(charSequence.toString().length() >= 4) {
 
                         for (Item item : items) {
                             if (item.getDistrict().toLowerCase().contains(charSequence.toString().toLowerCase())) {
-                                searchByDistrict = true;
                                 filteredList.add(item.getDistrict());
-                            } else if (item.getVillage().toLowerCase().contains(charSequence.toString().toLowerCase())) {
-                                searchByDistrict = false;
-                                filteredList.add(item.getVillage());
                             }
                         }
-                    }
                 }else{
-                    filteredList.addAll(districts);
+                        filteredList.addAll(districts);
                 }
 
                     FilterResults filterResults = new FilterResults();
                     filterResults.values = filteredList;
+
                 return filterResults;
             }
 
@@ -465,19 +460,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
 
-                if(!charSequence.toString().isEmpty() && charSequence.toString().length() >= 4) {
 
-                    // Checking if user is searching for a village or district
-                    if(searchByDistrict) {
-                        districts.clear();
-                        districts.addAll((Collection<? extends String>) filterResults.values);
-                    }else{
-                        villages.clear();
-                        villages.addAll((Collection<? extends String>) filterResults.values);
-                    }
-                    searchByDistrict = true;
+                    districts.clear();
+                    districts.addAll((Collection<? extends String>) filterResults.values);
                     notifyDataSetChanged();
-                }
 
             }
         };
