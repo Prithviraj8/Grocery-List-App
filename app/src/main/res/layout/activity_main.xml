@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+<!--    <SearchView-->
+<!--        android:id="@+id/SearchView_Item"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginTop="0dp"-->
+<!--        android:background="#8E8888"-->
+<!--        android:queryHint="Search by District Name"/>-->
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/SearchEditText"
+        android:layout_marginTop="0dp"
+        android:background="#8E8888"
+        android:padding="5dp"
+        android:hint="Search by District or Village Name (Type 4 character or more)"
+        android:textColorHint="#FFFF"
+        android:textColor="#FFF"
+        android:textSize="14sp"
+
+        />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/RefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/SearchEditText"
+        android:background="#00FFFFFF"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="0dp"
+        android:orientation="vertical"
+        >
+
+        <ListView
+            android:id="@+id/GroceryListView"
+            android:layout_width="416dp"
+            android:layout_height="680dp"
+            android:layout_below="@+id/RefreshLayout"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:dividerHeight="2dp"
+            android:visibility="visible" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+</RelativeLayout>
